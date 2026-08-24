@@ -281,58 +281,113 @@ export default function Home() {
 
         <Reveal id="ca-nhan" style={section}>
           <h2 style={{ ...label, marginBottom: "var(--space-8)" }}>04 — Dự án cá nhân</h2>
-          <a
-            href="https://goidaugiuong.site/"
-            target="_blank"
-            rel="noreferrer"
-            className="surface-lift"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "minmax(0, 1fr) minmax(0, 0.7fr)",
-              gap: "clamp(20px, 3vw, 44px)",
-              alignItems: "center",
-              padding: "var(--space-8)",
-              borderRadius: "var(--radius-lg)",
-              background: "var(--color-surface)",
-              boxShadow: "var(--shadow-sm)",
-              color: "var(--color-text)",
-              textDecoration: "none",
-            }}
-          >
-            <div>
-              <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", ...kicker }}>
-                <span>Đang hoạt động</span>
-                <span style={{ width: 12, height: 1, background: "var(--color-divider)" }} />
-                <span>Tự làm &amp; tự vận hành</span>
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-8)" }}>
+            <a
+              href="https://goidaugiuong.site/"
+              target="_blank"
+              rel="noreferrer"
+              className="surface-lift"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "minmax(0, 1fr) minmax(0, 0.7fr)",
+                gap: "clamp(20px, 3vw, 44px)",
+                alignItems: "center",
+                padding: "var(--space-8)",
+                borderRadius: "var(--radius-lg)",
+                background: "var(--color-surface)",
+                boxShadow: "var(--shadow-sm)",
+                color: "var(--color-text)",
+                textDecoration: "none",
+              }}
+            >
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", ...kicker }}>
+                  <span>Đang hoạt động</span>
+                  <span style={{ width: 12, height: 1, background: "var(--color-divider)" }} />
+                  <span>Tự làm &amp; tự vận hành</span>
+                </div>
+                <h3 style={{ margin: "var(--space-3) 0 var(--space-2)", fontSize: "clamp(22px, 2vw, 30px)", fontWeight: 500, letterSpacing: "-0.02em" }}>
+                  goidaugiuong.site
+                </h3>
+                <p style={{ margin: 0, maxWidth: "52ch", fontSize: 15, lineHeight: 1.7, color: muted(72) }}>
+                  Trang bán ebook của riêng tôi: khách chọn sách, thanh toán trực tuyến, hệ thống tự động gửi ebook qua email ngay sau khi
+                  nhận được thanh toán. Tôi làm toàn bộ từ giao diện, backend, luồng thanh toán đến việc mua domain và triển khai.
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "var(--space-6)" }}>
+                  {["Thanh toán online", "Gửi mail tự động", "Tự deploy"].map((s) => (
+                    <span key={s} className="tag tag-neutral">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <span style={{ display: "inline-block", marginTop: "var(--space-6)", fontSize: 13, color: "var(--color-accent-400)" }}>
+                  Mở website →
+                </span>
               </div>
-              <h3 style={{ margin: "var(--space-3) 0 var(--space-2)", fontSize: "clamp(22px, 2vw, 30px)", fontWeight: 500, letterSpacing: "-0.02em" }}>
-                goidaugiuong.site
-              </h3>
-              <p style={{ margin: 0, maxWidth: "52ch", fontSize: 15, lineHeight: 1.7, color: muted(72) }}>
-                Trang bán ebook của riêng tôi: khách chọn sách, thanh toán trực tuyến, hệ thống tự động gửi ebook qua email ngay sau khi
-                nhận được thanh toán. Tôi làm toàn bộ từ giao diện, backend, luồng thanh toán đến việc mua domain và triển khai.
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "var(--space-6)" }}>
-                {["Thanh toán online", "Gửi mail tự động", "Tự deploy"].map((s) => (
-                  <span key={s} className="tag tag-neutral">
-                    {s}
-                  </span>
-                ))}
+              <div style={{ position: "relative", aspectRatio: "16 / 11", borderRadius: "var(--radius-md)", overflow: "hidden", boxShadow: "var(--shadow-sm)" }}>
+                <Image
+                  src="/goidaugiuong.png"
+                  alt="Trang chủ goidaugiuong.site — Gối Đầu Giường"
+                  fill
+                  sizes="(max-width: 720px) 100vw, 40vw"
+                  style={{ objectFit: "cover", objectPosition: "top left" }}
+                />
               </div>
-              <span style={{ display: "inline-block", marginTop: "var(--space-6)", fontSize: 13, color: "var(--color-accent-400)" }}>
-                Mở website →
-              </span>
-            </div>
-            <div style={{ position: "relative", aspectRatio: "16 / 11", borderRadius: "var(--radius-md)", overflow: "hidden", boxShadow: "var(--shadow-sm)" }}>
-              <Image
-                src="/goidaugiuong.png"
-                alt="Trang chủ goidaugiuong.site — Gối Đầu Giường"
-                fill
-                sizes="(max-width: 720px) 100vw, 40vw"
-                style={{ objectFit: "cover", objectPosition: "top left" }}
-              />
-            </div>
-          </a>
+            </a>
+
+            <a
+              href="https://vue-app-love-us-new.vercel.app/home"
+              target="_blank"
+              rel="noreferrer"
+              className="surface-lift"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "minmax(0, 1fr) minmax(0, 0.7fr)",
+                gap: "clamp(20px, 3vw, 44px)",
+                alignItems: "center",
+                padding: "var(--space-8)",
+                borderRadius: "var(--radius-lg)",
+                background: "var(--color-surface)",
+                boxShadow: "var(--shadow-sm)",
+                color: "var(--color-text)",
+                textDecoration: "none",
+              }}
+            >
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", ...kicker }}>
+                  <span>Dự án thi trường</span>
+                  <span style={{ width: 12, height: 1, background: "var(--color-divider)" }} />
+                  <span>Website đẹp</span>
+                </div>
+                <h3 style={{ margin: "var(--space-3) 0 var(--space-2)", fontSize: "clamp(22px, 2vw, 30px)", fontWeight: 500, letterSpacing: "-0.02em" }}>
+                  UsLove
+                </h3>
+                <p style={{ margin: 0, maxWidth: "52ch", fontSize: 15, lineHeight: 1.7, color: muted(72) }}>
+                  Dự án cá nhân tôi mang đi thi website đẹp của trường: một trang giới thiệu danh sách các loài động vật đang có nguy cơ
+                  tuyệt chủng, giúp người xem tìm hiểu và nâng cao nhận thức về bảo tồn thiên nhiên.
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "var(--space-6)" }}>
+                  {["Vue.js", "Bảo tồn động vật", "Cuộc thi website"].map((s) => (
+                    <span key={s} className="tag tag-neutral">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <span style={{ display: "inline-block", marginTop: "var(--space-6)", fontSize: 13, color: "var(--color-accent-400)" }}>
+                  Mở website →
+                </span>
+              </div>
+              <div style={{ position: "relative", aspectRatio: "16 / 11", borderRadius: "var(--radius-md)", overflow: "hidden", boxShadow: "var(--shadow-sm)" }}>
+                <Image
+                  src="/uslove.png"
+                  alt="Trang chủ UsLove — danh sách động vật tuyệt chủng"
+                  fill
+                  sizes="(max-width: 720px) 100vw, 40vw"
+                  style={{ objectFit: "cover", objectPosition: "top left" }}
+                />
+              </div>
+            </a>
+          </div>
         </Reveal>
 
         <Reveal id="blog" style={section}>
