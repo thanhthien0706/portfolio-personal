@@ -1,7 +1,7 @@
 export const profile = {
   name: "Nguyễn Thanh Thiện",
   role: "Full-stack Developer",
-  years: "3 năm",
+  years: "hơn 4 năm",
   born: "2002",
   city: "Đà Nẵng",
   phone: "0373245002",
@@ -13,11 +13,11 @@ export const profile = {
   cv: "https://drive.google.com/file/d/144F6Vr2ZutkIdotu5WRkbM7A5vGIW38j/view?usp=sharing",
   headline: ["Làm hệ thống", "từ dữ liệu", "đến người dùng."],
   intro:
-    "Full-stack Developer 3 năm kinh nghiệm với .NET / C#, ReactJS, NodeJS và SQL Server. Tôi làm hệ thống quản lý, tích hợp và báo cáo cho doanh nghiệp — từ API, cơ sở dữ liệu đến giao diện người dùng cuối.",
+    "Full-stack Developer hơn 4 năm kinh nghiệm, tập trung vào NodeJS / NestJS, ReactJS và SQL Server. Tôi làm hệ thống quản lý, tích hợp và báo cáo cho doanh nghiệp — từ API, cơ sở dữ liệu đến giao diện người dùng cuối.",
   aboutLead:
-    "Tôi bắt đầu từ backend .NET, rồi làm cả frontend để tự đưa một tính năng đi hết đường: từ bảng dữ liệu đến màn hình người dùng nhìn thấy.",
+    "Tôi làm backend chủ lực với NodeJS / NestJS, rồi làm cả frontend để tự đưa một tính năng đi hết đường: từ bảng dữ liệu đến màn hình người dùng nhìn thấy.",
   aboutBody:
-    "Ba năm qua tôi làm cho hệ thống của khách hàng nước ngoài tại Napa Global — quản lý và kiểm kê cho chuỗi bán lẻ, cổng nhà cung cấp, tích hợp và báo cáo dữ liệu. Hiện tôi làm tại Cục Thống kê Đà Nẵng, phát triển website thống kê dân số và tôn giáo, đồng thời rà lỗi và kiểm tra bảo mật cho hệ thống. Tôi quen làm việc trực tiếp với người dùng để hiểu nghiệp vụ trước khi viết dòng code đầu tiên.",
+    "Hơn bốn năm qua tôi làm cho hệ thống của khách hàng nước ngoài tại Napa Global — quản lý và kiểm kê cho chuỗi bán lẻ, cổng nhà cung cấp, tích hợp và báo cáo dữ liệu. Hiện tôi làm tại Cục Thống kê Đà Nẵng, phát triển website thống kê dân số và tôn giáo, đồng thời rà lỗi và kiểm tra bảo mật cho hệ thống. Tôi quen làm việc trực tiếp với người dùng để hiểu nghiệp vụ trước khi viết dòng code đầu tiên.",
   education: {
     school: "Đại học Công nghệ Thông tin và Truyền thông Việt - Hàn (VKU)",
     detail: "Kỹ sư Công nghệ thông tin · 2020",
@@ -37,7 +37,7 @@ export const skills = [
   {
     group: "Backend",
     tag: "tag-accent",
-    items: [".NET / ASP.NET Core", "C#", "NodeJS", "RESTful API"],
+    items: ["NodeJS", "NestJS", "RESTful API", ".NET / C#"],
   },
   {
     group: "Frontend",
