@@ -178,6 +178,23 @@ export const projects: Project[] = [
     ],
     stack: [".NET / C#", "SQL Server", "JavaScript", "Bảo mật web"],
   },
+  {
+    id: "digital-wallet",
+    name: "Digital Wallet",
+    company: "Dự án cá nhân",
+    period: "2026 — nay",
+    kind: "Ví điện tử",
+    short:
+      "Ví điện tử cho phép người dùng nạp tiền từ ngân hàng vào ví, giao dịch trong ví và đổi sang USDT.",
+    detail:
+      "Digital Wallet là ví điện tử tôi tự xây dựng: người dùng liên kết tài khoản ngân hàng để nạp tiền vào ví, thực hiện giao dịch nội bộ trong ví, và đổi số dư sang USDT. Tôi làm backend bằng NestJS xử lý nạp tiền, đối soát giao dịch và tích hợp đổi USDT, giao diện bằng ReactJS / NextJS.",
+    points: [
+      "Xây dựng API bằng NestJS xử lý nạp tiền từ ngân hàng, giao dịch trong ví và đổi sang USDT.",
+      "Thiết kế cơ sở dữ liệu và luồng đối soát giao dịch đảm bảo số dư chính xác.",
+      "Dựng giao diện người dùng bằng ReactJS / NextJS cho ví và lịch sử giao dịch.",
+    ],
+    stack: ["NestJS", "ReactJS / NextJS", "PostgreSQL / MongoDB"],
+  },
 ];
 
 export const posts = [

@@ -30,6 +30,7 @@ html[data-theme="light"] a:hover { color: var(--color-accent-700); }
 
 @media (max-width: 900px) {
   #shell { grid-template-columns: minmax(0, 1fr) !important; }
+  .projects-grid { grid-template-columns: repeat(2, 1fr) !important; }
   #side {
     position: static !important;
     min-height: 0 !important;
@@ -45,6 +46,7 @@ html[data-theme="light"] a:hover { color: var(--color-accent-700); }
 
 @media (max-width: 720px) {
   #hero, #ca-nhan a { grid-template-columns: minmax(0, 1fr) !important; }
+  .projects-grid { grid-template-columns: minmax(0, 1fr) !important; }
   #hero { align-items: start !important; }
   #blog a { grid-template-columns: minmax(0, 1fr) !important; gap: 6px !important; align-items: start !important; }
 }

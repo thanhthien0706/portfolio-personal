@@ -11,8 +11,15 @@ const kicker: React.CSSProperties = {
   color: muted(50),
 };
 
+const PAGE_SIZE = 3;
+
 export default function Projects() {
   const [open, setOpen] = useState<Project | null>(null);
+  const [page, setPage] = useState(0);
+
+  const totalPages = Math.max(1, Math.ceil(projects.length / PAGE_SIZE));
+  const visible = projects.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
+  const goTo = (next: number) => setPage(((next % totalPages) + totalPages) % totalPages);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -24,8 +31,11 @@ export default function Projects() {
 
   return (
     <>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "var(--space-6)" }}>
-        {projects.map((p) => (
+      <div
+        className="projects-grid"
+        style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "var(--space-6)" }}
+      >
+        {visible.map((p) => (
           <div
             key={p.id}
             onClick={() => setOpen(p)}
@@ -61,6 +71,53 @@ export default function Projects() {
           </div>
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "var(--space-4)",
+            marginTop: "var(--space-6)",
+          }}
+        >
+          <button
+            onClick={() => goTo(page - 1)}
+            className="btn btn-ghost"
+            aria-label="Dự án trước"
+            style={{ borderColor: "var(--color-divider)", padding: "var(--space-2) var(--space-4)" }}
+          >
+            ←
+          </button>
+          <div style={{ display: "flex", gap: 6 }}>
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setPage(i)}
+                aria-label={`Trang ${i + 1}`}
+                style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                  background: i === page ? "var(--color-accent-400)" : "var(--color-divider)",
+                }}
+              />
+            ))}
+          </div>
+          <button
+            onClick={() => goTo(page + 1)}
+            className="btn btn-ghost"
+            aria-label="Dự án tiếp theo"
+            style={{ borderColor: "var(--color-divider)", padding: "var(--space-2) var(--space-4)" }}
+          >
+            →
+          </button>
+        </div>
+      )}
 
       {open && (
         <div
