@@ -27,6 +27,7 @@ html[data-theme="light"] a:hover { color: var(--color-accent-700); }
 .surface-lift:hover { box-shadow: var(--shadow-md); }
 .nav-link:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
 .post-row:hover { color: var(--color-accent-400); }
+.faq-trigger:hover { color: var(--color-accent-400); }
 
 @media (max-width: 900px) {
   #shell { grid-template-columns: minmax(0, 1fr) !important; }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { projects, type Project } from "@/data/portfolio";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const muted = (pct: number) => `color-mix(in srgb, var(--color-text) ${pct}%, transparent)`;
 const kicker: React.CSSProperties = {
@@ -14,8 +14,11 @@ const kicker: React.CSSProperties = {
 const PAGE_SIZE = 3;
 
 export default function Projects() {
-  const [open, setOpen] = useState<Project | null>(null);
+  const { t } = useLanguage();
+  const { projects, ui } = t;
+  const [openId, setOpenId] = useState<string | null>(null);
   const [page, setPage] = useState(0);
+  const open = projects.find((p) => p.id === openId) ?? null;
 
   const totalPages = Math.max(1, Math.ceil(projects.length / PAGE_SIZE));
   const visible = projects.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
@@ -23,7 +26,7 @@ export default function Projects() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(null);
+      if (e.key === "Escape") setOpenId(null);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -38,7 +41,7 @@ export default function Projects() {
         {visible.map((p) => (
           <div
             key={p.id}
-            onClick={() => setOpen(p)}
+            onClick={() => setOpenId(p.id)}
             className="card-lift"
             style={{
               display: "flex",
@@ -66,7 +69,7 @@ export default function Projects() {
               ))}
             </div>
             <span style={{ marginTop: "var(--space-3)", fontSize: 12.5, color: "var(--color-accent-400)" }}>
-              Xem chi tiết →
+              {ui.viewDetails}
             </span>
           </div>
         ))}
@@ -85,7 +88,7 @@ export default function Projects() {
           <button
             onClick={() => goTo(page - 1)}
             className="btn btn-ghost"
-            aria-label="Dự án trước"
+            aria-label={ui.prevProject}
             style={{ borderColor: "var(--color-divider)", padding: "var(--space-2) var(--space-4)" }}
           >
             ←
@@ -95,7 +98,7 @@ export default function Projects() {
               <button
                 key={i}
                 onClick={() => setPage(i)}
-                aria-label={`Trang ${i + 1}`}
+                aria-label={`${ui.pageLabel} ${i + 1}`}
                 style={{
                   width: 8,
                   height: 8,
@@ -111,7 +114,7 @@ export default function Projects() {
           <button
             onClick={() => goTo(page + 1)}
             className="btn btn-ghost"
-            aria-label="Dự án tiếp theo"
+            aria-label={ui.nextProject}
             style={{ borderColor: "var(--color-divider)", padding: "var(--space-2) var(--space-4)" }}
           >
             →
@@ -121,7 +124,7 @@ export default function Projects() {
 
       {open && (
         <div
-          onClick={() => setOpen(null)}
+          onClick={() => setOpenId(null)}
           style={{
             position: "fixed",
             inset: 0,
@@ -157,16 +160,16 @@ export default function Projects() {
                 <div style={{ marginTop: 4, fontSize: 14, color: muted(60) }}>{open.company}</div>
               </div>
               <button
-                onClick={() => setOpen(null)}
+                onClick={() => setOpenId(null)}
                 className="btn btn-ghost"
                 style={{ borderColor: "var(--color-divider)", padding: "var(--space-2) var(--space-4)" }}
               >
-                Đóng
+                {ui.close}
               </button>
             </div>
             <p style={{ margin: "var(--space-8) 0 0", fontSize: 15, lineHeight: 1.75, color: muted(78) }}>{open.detail}</p>
             <div style={{ marginTop: "var(--space-8)" }}>
-              <div style={{ ...kicker, marginBottom: "var(--space-3)" }}>Việc tôi làm</div>
+              <div style={{ ...kicker, marginBottom: "var(--space-3)" }}>{ui.workIDid}</div>
               <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14.5, lineHeight: 1.8, color: muted(76) }}>
                 {open.points.map((pt) => (
                   <li key={pt}>{pt}</li>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./nocturne.css";
 import "./globals.css";
+import { LanguageProvider } from "@/components/LanguageProvider";
 
 export const metadata: Metadata = {
   title: "Nguyễn Thanh Thiện — Full-stack Developer",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
     "Portfolio của Nguyễn Thanh Thiện: Full-stack Developer hơn 4 năm kinh nghiệm NodeJS / NestJS, ReactJS, SQL Server.",
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem("ntt-theme")||"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","dark")}})()`;
+const themeScript = `(function(){try{var t=localStorage.getItem("ntt-theme")||"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","dark")}try{var l=localStorage.getItem("ntt-lang")||"vi";document.documentElement.setAttribute("lang",l)}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,7 +17,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>{children}</body>
+      <body>
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }

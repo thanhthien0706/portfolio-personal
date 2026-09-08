@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { nav, profile } from "@/data/portfolio";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const muted = (pct: number) => `color-mix(in srgb, var(--color-text) ${pct}%, transparent)`;
 
 export default function Sidebar() {
+  const { lang, setLang, t } = useLanguage();
+  const { nav, profile, ui } = t;
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [active, setActive] = useState("");
 
@@ -82,7 +84,7 @@ export default function Sidebar() {
             </span>
           </div>
           <div style={{ fontFamily: "var(--font-heading)", fontSize: 22, fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
-            Nguyễn<br />Thanh Thiện
+            {profile.nameLines[0]}<br />{profile.nameLines[1]}
           </div>
           <div style={{ marginTop: 6, fontSize: 13, color: muted(62) }}>
             {profile.role} · {profile.years}
@@ -121,7 +123,7 @@ export default function Sidebar() {
             className="btn btn-primary"
             style={{ padding: "var(--space-3) var(--space-4)", fontSize: 13.5 }}
           >
-            Tải CV (PDF)
+            {ui.downloadCv}
           </a>
           <button
             onClick={toggle}
@@ -137,8 +139,35 @@ export default function Sidebar() {
                 background: "linear-gradient(90deg, var(--color-accent) 50%, transparent 50%)",
               }}
             />
-            Chuyển sang {theme === "dark" ? "giao diện sáng" : "giao diện tối"}
+            {theme === "dark" ? ui.switchToLight : ui.switchToDark}
           </button>
+          <div
+            role="group"
+            aria-label="Language"
+            style={{ display: "flex", border: "1px solid var(--color-divider)", borderRadius: "var(--radius-sm)", overflow: "hidden" }}
+          >
+            {(["vi", "en"] as const).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                aria-pressed={lang === l}
+                style={{
+                  flex: 1,
+                  padding: "var(--space-2) var(--space-4)",
+                  fontSize: 12.5,
+                  fontWeight: 500,
+                  letterSpacing: "0.04em",
+                  border: "none",
+                  cursor: "pointer",
+                  background: lang === l ? "var(--color-accent)" : "transparent",
+                  color: lang === l ? "var(--color-bg)" : muted(62),
+                  transition: "background 0.2s ease, color 0.2s ease",
+                }}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

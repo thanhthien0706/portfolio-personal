@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import Projects from "@/components/Projects";
+import FAQ from "@/components/FAQ";
 import Reveal from "@/components/Reveal";
-import { jobs, posts, profile, skills } from "@/data/portfolio";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const muted = (pct: number) => `color-mix(in srgb, var(--color-text) ${pct}%, transparent)`;
 
@@ -28,6 +31,8 @@ const kicker: React.CSSProperties = {
 };
 
 export default function Home() {
+  const { t } = useLanguage();
+  const { profile, jobs, posts, skills, personalProjects, ui } = t;
   return (
     <div
       id="shell"
@@ -73,12 +78,12 @@ export default function Home() {
               }}
             >
               <div>
-                <div style={kicker}>Kinh nghiệm</div>
+                <div style={kicker}>{ui.experienceKicker}</div>
                 <div style={{ marginTop: 3, fontFamily: "var(--font-heading)", fontSize: 20, fontWeight: 500 }}>{profile.years}</div>
               </div>
               <div>
-                <div style={kicker}>Vai trò</div>
-                <div style={{ marginTop: 3, fontFamily: "var(--font-heading)", fontSize: 20, fontWeight: 500 }}>Fullstack</div>
+                <div style={kicker}>{ui.roleKicker}</div>
+                <div style={{ marginTop: 3, fontFamily: "var(--font-heading)", fontSize: 20, fontWeight: 500 }}>{ui.fullstack}</div>
               </div>
             </div>
           </div>
@@ -123,17 +128,17 @@ export default function Home() {
                 NT
               </span>
               <span style={{ fontSize: 13.5, lineHeight: 1.5, color: muted(72) }}>
-                Đang mở cho
+                {ui.openTo[0]}
                 <br />
-                cơ hội mới
+                {ui.openTo[1]}
               </span>
             </div>
             <div>
-              <div style={kicker}>Hiện tại</div>
-              <div style={{ marginTop: 4, fontSize: 14.5, lineHeight: 1.5 }}>Junior Developer — Freelancer</div>
+              <div style={kicker}>{ui.currentKicker}</div>
+              <div style={{ marginTop: 4, fontSize: 14.5, lineHeight: 1.5 }}>{ui.currentRole}</div>
             </div>
             <div>
-              <div style={kicker}>Làm mạnh nhất</div>
+              <div style={kicker}>{ui.strongestKicker}</div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "var(--space-3)" }}>
                 {["NodeJS", "NestJS", ".NET / C#", "ReactJS / NextJS", "SQL Server", "ExpressJS"].map((s) => (
                   <span key={s} className="tag tag-accent" style={{ fontSize: 10.5 }}>
@@ -143,13 +148,13 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <div style={kicker}>Liên hệ nhanh</div>
+              <div style={kicker}>{ui.quickContactKicker}</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: "var(--space-3)", fontSize: 14 }}>
                 <a href={`tel:${profile.phone}`} style={{ textDecoration: "none" }}>
                   {profile.phonePretty}
                 </a>
                 <a href={profile.zalo} target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
-                  Nhắn qua Zalo
+                  {ui.zaloMessage}
                 </a>
               </div>
             </div>
@@ -157,7 +162,7 @@ export default function Home() {
         </section>
 
         <Reveal id="gioi-thieu" style={section}>
-          <h2 style={{ ...label, marginBottom: "var(--space-8)" }}>01 — Giới thiệu</h2>
+          <h2 style={{ ...label, marginBottom: "var(--space-8)" }}>{ui.sectionAbout}</h2>
           <p
             style={{
               margin: 0,
@@ -208,23 +213,23 @@ export default function Home() {
             }}
           >
             <div>
-              <div style={{ ...kicker, marginBottom: "var(--space-3)" }}>Học vấn</div>
+              <div style={{ ...kicker, marginBottom: "var(--space-3)" }}>{ui.educationKicker}</div>
               <div style={{ fontFamily: "var(--font-heading)", fontSize: 16, fontWeight: 500 }}>{profile.education.school}</div>
               <div style={{ marginTop: 4, fontSize: 14, color: muted(65) }}>{profile.education.detail}</div>
             </div>
             <div>
-              <div style={{ ...kicker, marginBottom: "var(--space-3)" }}>Ngôn ngữ</div>
+              <div style={{ ...kicker, marginBottom: "var(--space-3)" }}>{ui.languagesKicker}</div>
               <div style={{ fontSize: 14, lineHeight: 1.9, color: muted(72) }}>
-                Tiếng Việt — bản ngữ
+                {ui.languageNative}
                 <br />
-                English — đọc tài liệu kỹ thuật
+                {ui.languageTechnical}
               </div>
             </div>
           </div>
         </Reveal>
 
         <Reveal id="kinh-nghiem" style={section}>
-          <h2 style={{ ...label, marginBottom: "var(--space-8)" }}>02 — Kinh nghiệm</h2>
+          <h2 style={{ ...label, marginBottom: "var(--space-8)" }}>{ui.sectionExperience}</h2>
           <div
             style={{
               position: "relative",
@@ -271,129 +276,78 @@ export default function Home() {
 
         <Reveal id="du-an" style={section}>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "var(--space-8)", flexWrap: "wrap", marginBottom: "var(--space-8)" }}>
-            <h2 style={label}>03 — Dự án đã làm</h2>
+            <h2 style={label}>{ui.sectionWorkProjects}</h2>
             <p style={{ margin: 0, maxWidth: "42ch", fontSize: 14, lineHeight: 1.7, color: muted(65) }}>
-              Nhấn vào từng thẻ để xem chi tiết công việc tôi đảm nhận.
+              {ui.workProjectsHint}
             </p>
           </div>
           <Projects />
         </Reveal>
 
         <Reveal id="ca-nhan" style={section}>
-          <h2 style={{ ...label, marginBottom: "var(--space-8)" }}>04 — Dự án cá nhân</h2>
+          <h2 style={{ ...label, marginBottom: "var(--space-8)" }}>{ui.sectionPersonalProjects}</h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-8)" }}>
-            <a
-              href="https://goidaugiuong.site/"
-              target="_blank"
-              rel="noreferrer"
-              className="surface-lift"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "minmax(0, 1fr) minmax(0, 0.7fr)",
-                gap: "clamp(20px, 3vw, 44px)",
-                alignItems: "center",
-                padding: "var(--space-8)",
-                borderRadius: "var(--radius-lg)",
-                background: "var(--color-surface)",
-                boxShadow: "var(--shadow-sm)",
-                color: "var(--color-text)",
-                textDecoration: "none",
-              }}
-            >
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", ...kicker }}>
-                  <span>Đang hoạt động</span>
-                  <span style={{ width: 12, height: 1, background: "var(--color-divider)" }} />
-                  <span>Tự làm &amp; tự vận hành</span>
+            {personalProjects.map((p) => (
+              <a
+                key={p.id}
+                href={p.href}
+                target="_blank"
+                rel="noreferrer"
+                className="surface-lift"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "minmax(0, 1fr) minmax(0, 0.7fr)",
+                  gap: "clamp(20px, 3vw, 44px)",
+                  alignItems: "center",
+                  padding: "var(--space-8)",
+                  borderRadius: "var(--radius-lg)",
+                  background: "var(--color-surface)",
+                  boxShadow: "var(--shadow-sm)",
+                  color: "var(--color-text)",
+                  textDecoration: "none",
+                }}
+              >
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", ...kicker }}>
+                    <span>{p.badge1}</span>
+                    <span style={{ width: 12, height: 1, background: "var(--color-divider)" }} />
+                    <span>{p.badge2}</span>
+                  </div>
+                  <h3 style={{ margin: "var(--space-3) 0 var(--space-2)", fontSize: "clamp(22px, 2vw, 30px)", fontWeight: 500, letterSpacing: "-0.02em" }}>
+                    {p.title}
+                  </h3>
+                  <p style={{ margin: 0, maxWidth: "52ch", fontSize: 15, lineHeight: 1.7, color: muted(72) }}>
+                    {p.description}
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "var(--space-6)" }}>
+                    {p.tags.map((s) => (
+                      <span key={s} className="tag tag-neutral">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                  <span style={{ display: "inline-block", marginTop: "var(--space-6)", fontSize: 13, color: "var(--color-accent-400)" }}>
+                    {p.cta}
+                  </span>
                 </div>
-                <h3 style={{ margin: "var(--space-3) 0 var(--space-2)", fontSize: "clamp(22px, 2vw, 30px)", fontWeight: 500, letterSpacing: "-0.02em" }}>
-                  goidaugiuong.site
-                </h3>
-                <p style={{ margin: 0, maxWidth: "52ch", fontSize: 15, lineHeight: 1.7, color: muted(72) }}>
-                  Trang bán ebook của riêng tôi: khách chọn sách, thanh toán trực tuyến, hệ thống tự động gửi ebook qua email ngay sau khi
-                  nhận được thanh toán. Tôi làm toàn bộ từ giao diện, backend, luồng thanh toán đến việc mua domain và triển khai.
-                </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "var(--space-6)" }}>
-                  {["Thanh toán online", "Gửi mail tự động", "Tự deploy"].map((s) => (
-                    <span key={s} className="tag tag-neutral">
-                      {s}
-                    </span>
-                  ))}
+                <div style={{ position: "relative", aspectRatio: "16 / 11", borderRadius: "var(--radius-md)", overflow: "hidden", boxShadow: "var(--shadow-sm)" }}>
+                  <Image
+                    src={p.image}
+                    alt={p.imageAlt}
+                    fill
+                    sizes="(max-width: 720px) 100vw, 40vw"
+                    style={{ objectFit: "cover", objectPosition: "top left" }}
+                  />
                 </div>
-                <span style={{ display: "inline-block", marginTop: "var(--space-6)", fontSize: 13, color: "var(--color-accent-400)" }}>
-                  Mở website →
-                </span>
-              </div>
-              <div style={{ position: "relative", aspectRatio: "16 / 11", borderRadius: "var(--radius-md)", overflow: "hidden", boxShadow: "var(--shadow-sm)" }}>
-                <Image
-                  src="/goidaugiuong.png"
-                  alt="Trang chủ goidaugiuong.site — Gối Đầu Giường"
-                  fill
-                  sizes="(max-width: 720px) 100vw, 40vw"
-                  style={{ objectFit: "cover", objectPosition: "top left" }}
-                />
-              </div>
-            </a>
-
-            <a
-              href="https://vue-app-love-us-new.vercel.app/home"
-              target="_blank"
-              rel="noreferrer"
-              className="surface-lift"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "minmax(0, 1fr) minmax(0, 0.7fr)",
-                gap: "clamp(20px, 3vw, 44px)",
-                alignItems: "center",
-                padding: "var(--space-8)",
-                borderRadius: "var(--radius-lg)",
-                background: "var(--color-surface)",
-                boxShadow: "var(--shadow-sm)",
-                color: "var(--color-text)",
-                textDecoration: "none",
-              }}
-            >
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", ...kicker }}>
-                  <span>Dự án thi trường</span>
-                  <span style={{ width: 12, height: 1, background: "var(--color-divider)" }} />
-                  <span>Website đẹp</span>
-                </div>
-                <h3 style={{ margin: "var(--space-3) 0 var(--space-2)", fontSize: "clamp(22px, 2vw, 30px)", fontWeight: 500, letterSpacing: "-0.02em" }}>
-                  UsLove
-                </h3>
-                <p style={{ margin: 0, maxWidth: "52ch", fontSize: 15, lineHeight: 1.7, color: muted(72) }}>
-                  Dự án cá nhân tôi mang đi thi website đẹp của trường: một trang giới thiệu danh sách các loài động vật đang có nguy cơ
-                  tuyệt chủng, giúp người xem tìm hiểu và nâng cao nhận thức về bảo tồn thiên nhiên.
-                </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "var(--space-6)" }}>
-                  {["Vue.js", "Bảo tồn động vật", "Cuộc thi website"].map((s) => (
-                    <span key={s} className="tag tag-neutral">
-                      {s}
-                    </span>
-                  ))}
-                </div>
-                <span style={{ display: "inline-block", marginTop: "var(--space-6)", fontSize: 13, color: "var(--color-accent-400)" }}>
-                  Mở website →
-                </span>
-              </div>
-              <div style={{ position: "relative", aspectRatio: "16 / 11", borderRadius: "var(--radius-md)", overflow: "hidden", boxShadow: "var(--shadow-sm)" }}>
-                <Image
-                  src="/uslove.png"
-                  alt="Trang chủ UsLove — danh sách động vật tuyệt chủng"
-                  fill
-                  sizes="(max-width: 720px) 100vw, 40vw"
-                  style={{ objectFit: "cover", objectPosition: "top left" }}
-                />
-              </div>
-            </a>
+              </a>
+            ))}
           </div>
         </Reveal>
 
         <Reveal id="blog" style={section}>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "var(--space-8)", flexWrap: "wrap", marginBottom: "var(--space-6)" }}>
-            <h2 style={label}>05 — Bài viết</h2>
-            <p style={{ margin: 0, fontSize: 12, color: muted(42) }}>Nội dung nháp — thay tiêu đề và link thật trong data/portfolio.ts</p>
+            <h2 style={label}>{ui.sectionBlog}</h2>
+            <p style={{ margin: 0, fontSize: 12, color: muted(42) }}>{ui.blogNote}</p>
           </div>
           <div style={{ borderTop: "1px solid var(--color-divider)" }}>
             {posts.map((post) => (
@@ -427,8 +381,18 @@ export default function Home() {
           </div>
         </Reveal>
 
+        <Reveal id="faq" style={section}>
+          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "var(--space-8)", flexWrap: "wrap", marginBottom: "var(--space-8)" }}>
+            <h2 style={label}>{ui.sectionFaq}</h2>
+            <p style={{ margin: 0, maxWidth: "42ch", fontSize: 14, lineHeight: 1.7, color: muted(65) }}>
+              {ui.faqHint}
+            </p>
+          </div>
+          <FAQ />
+        </Reveal>
+
         <Reveal id="lien-he" style={{ ...section, padding: "clamp(44px, 5.5vw, 88px) clamp(20px, 4vw, 72px)" }}>
-          <h2 style={{ ...label, marginBottom: "var(--space-4)" }}>06 — Liên hệ</h2>
+          <h2 style={{ ...label, marginBottom: "var(--space-4)" }}>{ui.sectionContact}</h2>
           <p
             style={{
               margin: 0,
@@ -440,7 +404,7 @@ export default function Home() {
               letterSpacing: "-0.03em",
             }}
           >
-            Đang tìm người làm fullstack? Nhắn tôi một câu là được.
+            {ui.contactHeadline}
           </p>
           <div
             style={{
@@ -451,10 +415,10 @@ export default function Home() {
             }}
           >
             {[
-              { k: "Điện thoại & Zalo", v: profile.phonePretty, href: `tel:${profile.phone}`, size: 18 },
-              { k: "Zalo", v: "zalo.me/0373245002", href: profile.zalo, size: 18 },
-              { k: "Facebook", v: "nguyenthanhthien0706", href: profile.facebook, size: 18 },
-              { k: "Email", v: profile.email, href: `mailto:${profile.email}`, size: 15 },
+              { k: ui.contactPhone, v: profile.phonePretty, href: `tel:${profile.phone}`, size: 18 },
+              { k: ui.contactZalo, v: "zalo.me/0373245002", href: profile.zalo, size: 18 },
+              { k: ui.contactFacebook, v: "nguyenthanhthien0706", href: profile.facebook, size: 18 },
+              { k: ui.contactEmail, v: profile.email, href: `mailto:${profile.email}`, size: 15 },
             ].map((c) => (
               <a
                 key={c.k}
