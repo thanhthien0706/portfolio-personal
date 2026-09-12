@@ -26,7 +26,6 @@ html[data-theme="light"] a:hover { color: var(--color-accent-700); }
 .surface-lift { transition: box-shadow 0.2s ease; }
 .surface-lift:hover { box-shadow: var(--shadow-md); }
 .nav-link:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
-.post-row:hover { color: var(--color-accent-400); }
 .faq-trigger:hover { color: var(--color-accent-400); }
 
 @media (max-width: 900px) {
@@ -49,5 +48,4 @@ html[data-theme="light"] a:hover { color: var(--color-accent-700); }
   #hero, #ca-nhan a { grid-template-columns: minmax(0, 1fr) !important; }
   .projects-grid { grid-template-columns: minmax(0, 1fr) !important; }
   #hero { align-items: start !important; }
-  #blog a { grid-template-columns: minmax(0, 1fr) !important; gap: 6px !important; align-items: start !important; }
 }

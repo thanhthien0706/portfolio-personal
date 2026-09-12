@@ -32,7 +32,7 @@ const kicker: React.CSSProperties = {
 
 export default function Home() {
   const { t } = useLanguage();
-  const { profile, jobs, posts, skills, personalProjects, ui } = t;
+  const { profile, jobs, skills, personalProjects, ui } = t;
   return (
     <div
       id="shell"
@@ -214,8 +214,12 @@ export default function Home() {
           >
             <div>
               <div style={{ ...kicker, marginBottom: "var(--space-3)" }}>{ui.educationKicker}</div>
-              <div style={{ fontFamily: "var(--font-heading)", fontSize: 16, fontWeight: 500 }}>{profile.education.school}</div>
-              <div style={{ marginTop: 4, fontSize: 14, color: muted(65) }}>{profile.education.detail}</div>
+              {profile.education.map((e) => (
+                <div key={e.school} style={{ marginBottom: "var(--space-3)" }}>
+                  <div style={{ fontFamily: "var(--font-heading)", fontSize: 16, fontWeight: 500 }}>{e.school}</div>
+                  <div style={{ marginTop: 4, fontSize: 14, color: muted(65) }}>{e.detail}</div>
+                </div>
+              ))}
             </div>
             <div>
               <div style={{ ...kicker, marginBottom: "var(--space-3)" }}>{ui.languagesKicker}</div>
@@ -339,43 +343,6 @@ export default function Home() {
                     style={{ objectFit: "cover", objectPosition: "top left" }}
                   />
                 </div>
-              </a>
-            ))}
-          </div>
-        </Reveal>
-
-        <Reveal id="blog" style={section}>
-          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "var(--space-8)", flexWrap: "wrap", marginBottom: "var(--space-6)" }}>
-            <h2 style={label}>{ui.sectionBlog}</h2>
-            <p style={{ margin: 0, fontSize: 12, color: muted(42) }}>{ui.blogNote}</p>
-          </div>
-          <div style={{ borderTop: "1px solid var(--color-divider)" }}>
-            {posts.map((post) => (
-              <a
-                key={post.title}
-                href={post.href}
-                className="post-row"
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "92px minmax(0, 1fr) auto",
-                  gap: "var(--space-6)",
-                  alignItems: "baseline",
-                  padding: "var(--space-8) 2px",
-                  borderBottom: "1px solid var(--color-divider)",
-                  color: "var(--color-text)",
-                  textDecoration: "none",
-                }}
-              >
-                <span style={{ fontSize: 12, fontFamily: "ui-monospace, monospace", color: muted(45) }}>{post.date}</span>
-                <span>
-                  <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: 17, fontWeight: 500, letterSpacing: "-0.015em" }}>
-                    {post.title}
-                  </span>
-                  <span style={{ display: "block", marginTop: 5, maxWidth: "60ch", fontSize: 14, lineHeight: 1.65, color: muted(65) }}>
-                    {post.excerpt}
-                  </span>
-                </span>
-                <span style={{ fontSize: 12, color: muted(45) }}>{post.read}</span>
               </a>
             ))}
           </div>

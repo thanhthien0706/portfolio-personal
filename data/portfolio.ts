@@ -34,14 +34,6 @@ export type PersonalProject = {
   cta: string;
 };
 
-export type Post = {
-  date: string;
-  title: string;
-  excerpt: string;
-  read: string;
-  href: string;
-};
-
 export type Faq = {
   q: string;
   a: string;
@@ -66,14 +58,13 @@ export type PortfolioContent = {
     intro: string;
     aboutLead: string;
     aboutBody: string;
-    education: { school: string; detail: string };
+    education: { school: string; detail: string }[];
   };
   nav: { num: string; label: string; id: string }[];
   skills: { group: string; tag: string; items: string[] }[];
   jobs: Job[];
   projects: Project[];
   personalProjects: PersonalProject[];
-  posts: Post[];
   faqs: Faq[];
   ui: {
     experienceKicker: string;
@@ -89,7 +80,6 @@ export type PortfolioContent = {
     sectionExperience: string;
     sectionWorkProjects: string;
     sectionPersonalProjects: string;
-    sectionBlog: string;
     sectionFaq: string;
     sectionContact: string;
     educationKicker: string;
@@ -97,7 +87,6 @@ export type PortfolioContent = {
     languageNative: string;
     languageTechnical: string;
     workProjectsHint: string;
-    blogNote: string;
     faqHint: string;
     contactHeadline: string;
     contactPhone: string;
@@ -131,43 +120,66 @@ export const content: Record<Lang, PortfolioContent> = {
       facebook: "https://www.facebook.com/nguyenthanhthien0706/",
       email: "thanhthien0706.developer@gmail.com",
       github: "https://github.com/thanhthien0706",
-      cv: "https://drive.google.com/file/d/1cmfdkCnfQjOzLEys-MlKZ7LyTC2zJwFJ/view?usp=sharing",
+      cv: "/CV-NguyenThanhThien.pdf",
       headline: ["Làm hệ thống", "từ dữ liệu", "đến người dùng."],
       intro:
         "Full-stack Developer hơn 3 năm kinh nghiệm, tập trung vào .NET, NodeJS / NestJS, ReactJS và SQL Server. Tôi làm hệ thống quản lý, tích hợp và báo cáo cho doanh nghiệp — từ API, cơ sở dữ liệu đến giao diện người dùng cuối.",
       aboutLead:
         "Tôi làm backend chủ lực với .Net, NodeJS / NestJS, rồi làm cả frontend để tự đưa một tính năng đi hết đường: từ bảng dữ liệu đến màn hình người dùng nhìn thấy.",
       aboutBody:
-        "Hơn bốn năm qua tôi làm cho hệ thống của khách hàng nước ngoài tại Napa Global — quản lý và kiểm kê cho chuỗi bán lẻ, cổng nhà cung cấp, tích hợp và báo cáo dữ liệu. Hiện tôi làm tại Cục Thống kê Đà Nẵng, phát triển website thống kê dân số và tôn giáo, đồng thời rà lỗi và kiểm tra bảo mật cho hệ thống. Tôi quen làm việc trực tiếp với người dùng để hiểu nghiệp vụ trước khi viết dòng code đầu tiên.",
-      education: {
-        school: "Đại học Công nghệ Thông tin và Truyền thông Việt - Hàn (VKU)",
-        detail: "Kỹ sư Công nghệ thông tin · 2020",
-      },
+        "Hơn ba năm qua tôi làm cho hệ thống của khách hàng nước ngoài tại Napa Global — quản lý và kiểm kê cho chuỗi bán lẻ, cổng nhà cung cấp, tích hợp và báo cáo dữ liệu. Hiện tôi làm tại Cục Thống kê Đà Nẵng, phát triển website thống kê dân số và tôn giáo, đồng thời rà lỗi và kiểm tra bảo mật cho hệ thống. Tôi quen làm việc trực tiếp với người dùng để hiểu nghiệp vụ trước khi viết dòng code đầu tiên.",
+      education: [
+        {
+          school: "Đại học Công nghệ Thông tin và Truyền thông Việt - Hàn (VKU)",
+          detail: "Kỹ sư Công nghệ thông tin · 01/2020 – 05/2025",
+        },
+        {
+          school: "Trung tâm Tin học - Ngoại ngữ Genetic (Genetic - Computer & Languages)",
+          detail: "Khóa Master Front-End & VueJS · 07/2021 – 02/2022",
+        },
+      ],
     },
     nav: [
       { num: "01", label: "Giới thiệu", id: "gioi-thieu" },
       { num: "02", label: "Kinh nghiệm", id: "kinh-nghiem" },
       { num: "03", label: "Dự án đã làm", id: "du-an" },
       { num: "04", label: "Dự án cá nhân", id: "ca-nhan" },
-      { num: "05", label: "Bài viết", id: "blog" },
-      { num: "06", label: "Câu hỏi thường gặp", id: "faq" },
-      { num: "07", label: "Liên hệ", id: "lien-he" },
+      { num: "05", label: "Câu hỏi thường gặp", id: "faq" },
+      { num: "06", label: "Liên hệ", id: "lien-he" },
     ],
     skills: [
       {
         group: "Backend",
         tag: "tag-accent",
-        items: ["NodeJS", "NestJS", "RESTful API", ".NET / C#"],
+        items: [".NET / C#", "NodeJS", "NestJS", "RESTful API", "GraphQL", "Express.js"],
       },
       {
         group: "Frontend",
         tag: "tag-neutral",
-        items: ["ReactJS", "JavaScript / TS", "HTML / CSS"],
+        items: ["ReactJS", "Next.js", "JavaScript / TypeScript", "HTML / CSS", "SASS"],
       },
       {
-        group: "Dữ liệu & khác",
+        group: "Cơ sở dữ liệu",
         tag: "tag-outline",
-        items: ["SQL Server", "SSIS / ETL", "Git", "Kiểm tra bảo mật"],
+        items: ["SQL Server", "PostgreSQL", "MySQL", "MongoDB", "Redis", "SSIS / ETL"],
+      },
+      {
+        group: "DevOps & Kiểm thử",
+        tag: "tag-accent-2",
+        items: [
+          "Docker",
+          "Docker Compose",
+          "CI/CD (GitHub Actions / GitLab CI)",
+          "Nginx",
+          "Jest",
+          "Vitest",
+          "xUnit",
+        ],
+      },
+      {
+        group: "AI & công cụ",
+        tag: "tag-accent",
+        items: ["Claude (Claude Code)", "Cursor", "ChatGPT", "Prompt Engineering", "Git", "Kiểm tra bảo mật"],
       },
     ],
     jobs: [
@@ -327,32 +339,6 @@ export const content: Record<Lang, PortfolioContent> = {
         cta: "Mở website →",
       },
     ],
-    posts: [
-      {
-        date: "2026 · nháp",
-        title: "Tối ưu truy vấn SQL Server cho bảng vài triệu dòng",
-        excerpt:
-          "Những gì tôi học được khi báo cáo chạy 40 giây và khách hàng chỉ chờ được 3 giây.",
-        read: "6 phút",
-        href: "#blog",
-      },
-      {
-        date: "2026 · nháp",
-        title: "SSIS trong thực tế: khi dữ liệu hai hệ thống không khớp",
-        excerpt:
-          "Ghi chép về việc dựng luồng ETL chạy hằng ngày mà không phải sửa tay mỗi sáng.",
-        read: "8 phút",
-        href: "#blog",
-      },
-      {
-        date: "2026 · nháp",
-        title: "Tự làm trang bán ebook: thanh toán và gửi mail tự động",
-        excerpt:
-          "Toàn bộ quá trình dựng goidaugiuong.site, từ domain đến luồng giao hàng qua email.",
-        read: "5 phút",
-        href: "#blog",
-      },
-    ],
     faqs: [
       {
         q: "Bạn đang làm freelance hay tìm việc full-time?",
@@ -389,15 +375,13 @@ export const content: Record<Lang, PortfolioContent> = {
       sectionExperience: "02 — Kinh nghiệm",
       sectionWorkProjects: "03 — Dự án đã làm",
       sectionPersonalProjects: "04 — Dự án cá nhân",
-      sectionBlog: "05 — Bài viết",
-      sectionFaq: "06 — Câu hỏi thường gặp",
-      sectionContact: "07 — Liên hệ",
+      sectionFaq: "05 — Câu hỏi thường gặp",
+      sectionContact: "06 — Liên hệ",
       educationKicker: "Học vấn",
       languagesKicker: "Ngôn ngữ",
       languageNative: "Tiếng Việt — bản ngữ",
       languageTechnical: "English — đọc tài liệu kỹ thuật",
       workProjectsHint: "Nhấn vào từng thẻ để xem chi tiết công việc tôi đảm nhận.",
-      blogNote: "Nội dung nháp — thay tiêu đề và link thật trong data/portfolio.ts",
       faqHint: "Nhấn vào từng câu hỏi để xem câu trả lời.",
       contactHeadline: "Đang tìm người làm fullstack? Nhắn tôi một câu là được.",
       contactPhone: "Điện thoại & Zalo",
@@ -429,7 +413,7 @@ export const content: Record<Lang, PortfolioContent> = {
       facebook: "https://www.facebook.com/nguyenthanhthien0706/",
       email: "thanhthien0706.developer@gmail.com",
       github: "https://github.com/thanhthien0706",
-      cv: "https://drive.google.com/file/d/1cmfdkCnfQjOzLEys-MlKZ7LyTC2zJwFJ/view?usp=sharing",
+      cv: "/CV-NguyenThanhThien.pdf",
       headline: ["Building systems", "from data", "to users."],
       intro:
         "Full-stack Developer with 3+ years of experience, focused on .NET, NodeJS / NestJS, ReactJS and SQL Server. I build management, integration and reporting systems for businesses — from the API and database to the end-user interface.",
@@ -437,35 +421,58 @@ export const content: Record<Lang, PortfolioContent> = {
         "I do backend mainly with .NET and NodeJS / NestJS, and I also do frontend so I can carry a feature all the way through: from the data table to the screen users actually see.",
       aboutBody:
         "Over the past few years I've worked on systems for an overseas client at Napa Global — inventory management for a retail chain, a vendor portal, and data integration and reporting. I'm currently at the Da Nang Statistics Office, building a population and religion statistics website while also finding bugs and running security tests on the system. I'm used to working directly with users to understand the business need before writing the first line of code.",
-      education: {
-        school: "Vietnam - Korea University of Information and Communication Technology (VKU)",
-        detail: "B.Eng. in Software Engineering · 2020",
-      },
+      education: [
+        {
+          school: "Vietnam - Korea University of Information and Communication Technology (VKU)",
+          detail: "B.Eng. in Software Engineering · 01/2020 – 05/2025",
+        },
+        {
+          school: "Genetic - Computer & Languages Center",
+          detail: "Master Front-End & VueJS course · 07/2021 – 02/2022",
+        },
+      ],
     },
     nav: [
       { num: "01", label: "About", id: "gioi-thieu" },
       { num: "02", label: "Experience", id: "kinh-nghiem" },
       { num: "03", label: "Work projects", id: "du-an" },
       { num: "04", label: "Personal projects", id: "ca-nhan" },
-      { num: "05", label: "Writing", id: "blog" },
-      { num: "06", label: "FAQ", id: "faq" },
-      { num: "07", label: "Contact", id: "lien-he" },
+      { num: "05", label: "FAQ", id: "faq" },
+      { num: "06", label: "Contact", id: "lien-he" },
     ],
     skills: [
       {
         group: "Backend",
         tag: "tag-accent",
-        items: ["NodeJS", "NestJS", "RESTful API", ".NET / C#"],
+        items: [".NET / C#", "NodeJS", "NestJS", "RESTful API", "GraphQL", "Express.js"],
       },
       {
         group: "Frontend",
         tag: "tag-neutral",
-        items: ["ReactJS", "JavaScript / TS", "HTML / CSS"],
+        items: ["ReactJS", "Next.js", "JavaScript / TypeScript", "HTML / CSS", "SASS"],
       },
       {
-        group: "Data & other",
+        group: "Databases",
         tag: "tag-outline",
-        items: ["SQL Server", "SSIS / ETL", "Git", "Security testing"],
+        items: ["SQL Server", "PostgreSQL", "MySQL", "MongoDB", "Redis", "SSIS / ETL"],
+      },
+      {
+        group: "DevOps & Testing",
+        tag: "tag-accent-2",
+        items: [
+          "Docker",
+          "Docker Compose",
+          "CI/CD (GitHub Actions / GitLab CI)",
+          "Nginx",
+          "Jest",
+          "Vitest",
+          "xUnit",
+        ],
+      },
+      {
+        group: "AI & Tools",
+        tag: "tag-accent",
+        items: ["Claude (Claude Code)", "Cursor", "ChatGPT", "Prompt Engineering", "Git", "Security testing"],
       },
     ],
     jobs: [
@@ -625,32 +632,6 @@ export const content: Record<Lang, PortfolioContent> = {
         cta: "Open website →",
       },
     ],
-    posts: [
-      {
-        date: "2026 · draft",
-        title: "Optimizing SQL Server queries on multi-million-row tables",
-        excerpt:
-          "What I learned when a report took 40 seconds to run and the client could only wait 3.",
-        read: "6 min",
-        href: "#blog",
-      },
-      {
-        date: "2026 · draft",
-        title: "SSIS in practice: when data from two systems doesn't match",
-        excerpt:
-          "Notes on building an ETL pipeline that runs daily without manual fixes every morning.",
-        read: "8 min",
-        href: "#blog",
-      },
-      {
-        date: "2026 · draft",
-        title: "Building my own ebook store: automated checkout and email delivery",
-        excerpt:
-          "The whole process of building goidaugiuong.site, from domain to email delivery.",
-        read: "5 min",
-        href: "#blog",
-      },
-    ],
     faqs: [
       {
         q: "Are you freelancing or looking for a full-time role?",
@@ -687,15 +668,13 @@ export const content: Record<Lang, PortfolioContent> = {
       sectionExperience: "02 — Experience",
       sectionWorkProjects: "03 — Work projects",
       sectionPersonalProjects: "04 — Personal projects",
-      sectionBlog: "05 — Writing",
-      sectionFaq: "06 — FAQ",
-      sectionContact: "07 — Contact",
+      sectionFaq: "05 — FAQ",
+      sectionContact: "06 — Contact",
       educationKicker: "Education",
       languagesKicker: "Languages",
       languageNative: "Vietnamese — native",
       languageTechnical: "English — technical reading",
       workProjectsHint: "Click each card to see the details of the work I did.",
-      blogNote: "Draft content — replace titles and real links in data/portfolio.ts",
       faqHint: "Click each question to see the answer.",
       contactHeadline: "Looking for a fullstack developer? Just send me a message.",
       contactPhone: "Phone & Zalo",
